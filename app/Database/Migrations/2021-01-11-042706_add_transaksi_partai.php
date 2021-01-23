@@ -26,7 +26,7 @@ class AddTransaksiPartai extends Migration
 				'type' => 'INT',
 				'unsigned' => true,
 			],
-			'qty' => [
+			'trx_partai_qty' => [
 				'type' => 'INT',
 			],
 			'created_by' => [

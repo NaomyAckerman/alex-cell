@@ -22,7 +22,7 @@ class AddTransaksiKartu extends Migration
 				'type' => 'INT',
 				'unsigned' => true,
 			],
-			'qty' => [
+			'trx_kartu_qty' => [
 				'type' => 'INT',
 			],
 			'created_by' => [

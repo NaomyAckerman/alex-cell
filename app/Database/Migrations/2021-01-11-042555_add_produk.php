@@ -18,19 +18,23 @@ class AddProduk extends Migration
 				'type' => 'INT',
 				'unsigned' => true,
 			],
-			'gambar' => [
+			'produk_gambar' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128',
 			],
-			'nama' => [
+			'produk_slug' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128',
 			],
-			'deskripsi' => [
+			'produk_nama' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128',
 			],
-			'qty' => [
+			'produk_deskripsi' => [
+				'type' => 'VARCHAR',
+				'constraint' => '128',
+			],
+			'produk_qty' => [
 				'type' => 'INT',
 			],
 			'harga_supply' => [

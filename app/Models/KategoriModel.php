@@ -10,7 +10,7 @@ class KategoriModel extends Model
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Kategori';
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['nama', 'gambar', 'deskripsi', 'created_by', 'updated_by', 'deleted_by'];
+    protected $allowedFields = ['kategori_nama', 'kategori_gambar', 'kategori_slug', 'kategori_deskripsi', 'created_by', 'updated_by', 'deleted_by'];
     protected $useTimestamps = true;
     protected $validationRules    = [
         'nama' => [

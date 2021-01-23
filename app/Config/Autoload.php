@@ -43,7 +43,6 @@ class Autoload extends AutoloadConfig
 		APP_NAMESPACE => APPPATH, // For custom app namespace
 		'Config'      => APPPATH . 'Config',
 		'App'	       => APPPATH,
-		'Myth\Auth'   => APPPATH . 'ThirdParty/myth-auth/src',
 	];
 
 	/**

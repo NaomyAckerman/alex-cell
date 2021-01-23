@@ -29,12 +29,12 @@ class Auth extends \Myth\Auth\Config\Auth
     //--------------------------------------------------------------------
 
     public $views = [
-        'login' => '\App\Views\pages\auth\login',
-        'register' => 'Myth\Auth\Views\register',
-        'forgot' => '\App\Views\pages\auth\lupa_pass',
-        'reset' => 'Myth\Auth\Views\reset',
-        'emailForgot' => 'Myth\Auth\Views\emails\forgot',
-        'emailActivation' => 'Myth\Auth\Views\emails\activation',
+        'login' => 'App\Views\pages\auth\login',
+        'register' => 'App\Views\Auth\register',
+        'forgot' => 'App\Views\pages\auth\lupa_pass',
+        'reset' => 'App\Views\Auth\reset',
+        'emailForgot' => 'App\Views\Auth\emails\forgot',
+        'emailActivation' => 'App\Views\Auth\emails\activation',
     ];
 
     //--------------------------------------------------------------------
@@ -197,7 +197,7 @@ class Auth extends \Myth\Auth\Config\Auth
     // cost. This makes the hashing process takes longer.
     //
     // Valid range is between 4 - 31.
-    public $hashCost = 12;
+    public $hashCost = 10;
 
     //--------------------------------------------------------------------
     // Minimum Password Length

@@ -11,7 +11,7 @@ class TransaksiPartaiModel extends Model
     protected $returnType = 'App\Entities\Transaksipartai';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'produk_id', 'user_id', 'qty', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'produk_id', 'user_id', 'trx_partai_qty', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

@@ -17,42 +17,47 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Dashboard');
+$routes->setDefaultController('DashboardController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(true);
 $routes->set404Override();
 $routes->setAutoRoute(false);
 
-/**
- * --------------------------------------------------------------------
- * Route Definitions
- * --------------------------------------------------------------------
- */
+// Login/out
+$routes->get('login', 'AuthController::login', ['as' => 'login']);
+$routes->post('login', 'AuthController::attemptLogin');
+$routes->get('logout', 'AuthController::logout');
 
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
+// Registration
+$routes->get('register', 'AuthController::register', ['as' => 'register']);
+$routes->post('register', 'AuthController::attemptRegister');
 
-$routes->get('/', 'Dashboard\Dashboard::index', ['as' => 'dashboard']);
-$routes->get('/produk', 'Produk\Produk::index', ['as' => 'produk']);
-$routes->get('/get-produk', 'Produk\Produk::produk', ['as' => 'get-produk']);
+// Activation
+$routes->get('activate-account', 'AuthController::activateAccount', ['as' => 'activate-account']);
+$routes->get('resend-activate-account', 'AuthController::resendActivateAccount', ['as' => 'resend-activate-account']);
+
+// Forgot/Resets
+$routes->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
+$routes->post('forgot', 'AuthController::attemptForgot');
+$routes->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
+$routes->post('reset-password', 'AuthController::attemptReset');
+
+
+
+
+
+
+
+$routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
+$routes->get('/produk', 'ProdukController::index', ['as' => 'produk']);
+$routes->get('/get-produk', 'ProdukController::produk', ['as' => 'get-produk']);
+
 // Karyawan
 $routes->group('', ['filter' => 'role:karyawan'], function ($routes) {
 });
 
-/**
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
+
+
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

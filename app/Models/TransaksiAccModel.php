@@ -11,7 +11,7 @@ class TransaksiAccModel extends Model
     protected $returnType = 'App\Entities\Transaksiacc';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'produk_id', 'qty', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'produk_id', 'trx_acc_qty', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

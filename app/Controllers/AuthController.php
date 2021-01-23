@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use Config\Email;
 use CodeIgniter\Controller;
 use Myth\Auth\Entities\User;
+use App\Controllers\BaseController;
 
 class AuthController extends BaseController
 {
@@ -53,7 +53,7 @@ class AuthController extends BaseController
 		// Set a return URL if none is specified
 		$_SESSION['redirect_url'] = session('redirect_url') ?? previous_url() ?? '/';
 
-		return view($this->config->views['login'], ['config' => $this->config, 'title' => 'Login']);
+		return view($this->config->views['login'], ['config' => $this->config, 'title' => 'login']);
 	}
 
 	/**
@@ -63,11 +63,25 @@ class AuthController extends BaseController
 	public function attemptLogin()
 	{
 		$rules = [
-			'login'	=> 'required',
-			'password' => 'required',
+			'login' => [
+				'rules'  => 'required',
+				'errors' => [
+					'required' => 'Anda harus mengisi Username / Email'
+				]
+			],
+			'password' => [
+				'rules'  => 'required',
+				'errors' => [
+					'required' => 'Anda harus mengisi Username / Email'
+				]
+			],
 		];
 		if ($this->config->validFields == ['email']) {
-			$rules['login'] .= '|valid_email';
+			$rules['login']['rules'] .= '|valid_email';
+			$rules['login']['errors'] = [
+				'required' => 'Anda harus mengisi Email',
+				'valid_email' => 'Silakan periksa form Email. Tampaknya tidak valid.'
+			];
 		}
 
 		if (!$this->validate($rules)) {
@@ -200,7 +214,7 @@ class AuthController extends BaseController
 			return redirect()->route('login')->with('error', lang('Auth.forgotDisabled'));
 		}
 
-		return view($this->config->views['forgot'], ['config' => $this->config, 'title' => 'Lupa Password']);
+		return view($this->config->views['forgot'], ['config' => $this->config, 'title' => 'lupa password']);
 	}
 
 	/**
@@ -249,6 +263,7 @@ class AuthController extends BaseController
 		return view($this->config->views['reset'], [
 			'config' => $this->config,
 			'token'  => $token,
+			'title' => 'reset password'
 		]);
 	}
 
@@ -275,10 +290,36 @@ class AuthController extends BaseController
 		);
 
 		$rules = [
-			'token'		=> 'required',
-			'email'		=> 'required|valid_email',
-			'password'	 => 'required|strong_password',
-			'pass_confirm' => 'required|matches[password]',
+			'token' => [
+				'label'  => 'Token',
+				'rules'  => 'required',
+				'errors' => [
+					'required' => 'Anda harus mengisi {field}.'
+				]
+			],
+			'email' => [
+				'label'  => 'Email',
+				'rules'  => 'required|valid_email',
+				'errors' => [
+					'required' => 'Anda harus mengisi {field}.',
+					'valid_email' => 'Silakan periksa form {field}. Tampaknya tidak valid.'
+				]
+			],
+			'password' => [
+				'label'  => 'Password',
+				'rules'  => 'required|strong_password',
+				'errors' => [
+					'required' => 'Anda harus mengisi {field}.'
+				]
+			],
+			'pass_confirm' => [
+				'label'  => 'Password konfirmasi',
+				'rules'  => 'required|matches[password]',
+				'errors' => [
+					'required' => 'Anda harus mengisi {field}.',
+					'matches' => '{field} tidak cocok dengan password.'
+				]
+			],
 		];
 
 		if (!$this->validate($rules)) {

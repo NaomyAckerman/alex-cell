@@ -14,19 +14,19 @@ class AddKonter extends Migration
 				'unsigned' 			=> true,
 				'auto_increment' 	=> true,
 			],
-			'nama' => [
+			'konter_nama' => [
 				'type'				=> 'VARCHAR',
 				'constraint' 		=> '128'
 			],
-			'gambar' => [
+			'konter_gambar' => [
 				'type'				=> 'VARCHAR',
 				'constraint' 		=> '128'
 			],
-			'email' => [
+			'konter_email' => [
 				'type' 				=> 'VARCHAR',
 				'constraint' 		=> '128',
 			],
-			'no_telp' => [
+			'konter_no_telp' => [
 				'type'				=> 'VARCHAR',
 				'constraint' 		=> '20',
 			],

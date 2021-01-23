@@ -22,7 +22,7 @@ class AddTransaksiAcc extends Migration
 				'type' => 'INT',
 				'unsigned' => true,
 			],
-			'qty' => [
+			'trx_acc_qty' => [
 				'type' => 'INT',
 			],
 			'created_by' => [

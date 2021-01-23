@@ -11,7 +11,7 @@ class TransaksiKartuModel extends Model
     protected $returnType = 'App\Entities\Transaksikartu';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'produk_id', 'qty', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'produk_id', 'trx_kartu_qty', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

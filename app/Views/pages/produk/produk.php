@@ -14,27 +14,29 @@
     </thead>
 
     <tbody>
-        <tr>
-            <td>Isat 3</td>
-            <td><img class="rounded-circle" src="assets/images/users/avatar-2.jpg" alt="user" width="40"> </td>
-            <td>Kartu</td>
-            <td>100 pcs</td>
-            <td><small>IDR</small> 1.000.000</td>
-            <td><small>IDR</small> 10.000</td>
-            <td><small>IDR</small> 8.000</td>
-            <td>Kartu indosat 4.5 GB</td>
-            <td>
-                <div class="tabledit-toolbar btn-toolbar">
-                    <div class="btn-group btn-group-sm">
-                        <button class="tabledit-edit-button btn btn-sm btn-warning text-white" style="float: none; margin: 5px;">
-                            <i class="mdi mdi-table-edit"></i>
-                        </button>
-                        <button class="tabledit-edit-button btn btn-sm btn-danger" style="float: none; margin: 5px;">
-                            <i class="mdi mdi-delete"></i>
-                        </button>
+        <?php foreach ($produk as $item) : ?>
+            <tr>
+                <td><?= $item->produk_nama ?></td>
+                <td><img class="rounded-circle" src="assets/images/products/<?= $item->produk_gambar ?>" alt="user" width="40"> </td>
+                <td><?= $item->kategori_nama ?></td>
+                <td><?= $item->produk_qty ?> <small>pcs</small></td>
+                <td><small>IDR</small> <?= $item->harga_supply ?></td>
+                <td><small>IDR</small> <?= $item->harga_user ?></td>
+                <td><small>IDR</small> <?= $item->harga_partai ?></td>
+                <td><?= $item->produk_deskripsi ?></td>
+                <td>
+                    <div class="tabledit-toolbar btn-toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <button class="tabledit-edit-button btn btn-sm btn-warning text-white" style="float: none; margin: 5px;">
+                                <i class="mdi mdi-table-edit"></i>
+                            </button>
+                            <button class="tabledit-edit-button btn btn-sm btn-danger" style="float: none; margin: 5px;">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

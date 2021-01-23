@@ -11,7 +11,7 @@ class KonterModel extends Model
     protected $returnType = 'App\Entities\Konter';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'nama', 'gambar', 'email', 'no_telp', 'created_by', 'updated_by', 'deleted_by'
+        'konter_nama', 'konter_gambar', 'konter_email', 'konter_no_telp', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

@@ -11,18 +11,18 @@ class KonterSeeder extends Seeder
     {
         $data = [
             [
-                'nama' => 'asabri',
-                'gambar' => 'asabri.jpg',
-                'email' => 'asabri@gmail.com',
-                'no_telp' => '081934613970',
+                'konter_nama' => 'asabri',
+                'konter_gambar' => 'asabri.jpg',
+                'konter_email' => 'asabri@gmail.com',
+                'konter_no_telp' => '081934613970',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],
             [
-                'nama' => 'cokro',
-                'gambar' => 'cokro.jpg',
-                'email' => 'cokro@gmail.com',
-                'no_telp' => '081934613970',
+                'konter_nama' => 'cokro',
+                'konter_gambar' => 'cokro.jpg',
+                'konter_email' => 'cokro@gmail.com',
+                'konter_no_telp' => '081934613970',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],

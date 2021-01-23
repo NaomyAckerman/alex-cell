@@ -15,15 +15,19 @@ class AddKategori extends Migration
 				'unsigned' => true,
 				'auto_increment' => true,
 			],
-			'nama'       => [
+			'kategori_nama'       => [
 				'type'          => 'VARCHAR',
 				'constraint'    => '128',
 			],
-			'gambar'       => [
+			'kategori_slug'       => [
 				'type'          => 'VARCHAR',
 				'constraint'    => '128',
 			],
-			'deskripsi'       => [
+			'kategori_gambar'       => [
+				'type'          => 'VARCHAR',
+				'constraint'    => '128',
+			],
+			'kategori_deskripsi'       => [
 				'type'          => 'TEXT',
 			],
 			'created_by' => [

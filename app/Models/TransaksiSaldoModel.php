@@ -11,7 +11,7 @@ class TransaksiSaldoModel extends Model
     protected $returnType = 'App\Entities\Transaksisaldo';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'ar_id', 'nama', 'saldo', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'ar_id', 'ar_nama', 'saldo', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

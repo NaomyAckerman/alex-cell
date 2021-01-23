@@ -11,7 +11,7 @@ class ProdukModel extends Model
     protected $returnType = 'App\Entities\Produk';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'kategori_id', 'nama', 'gambar', 'deskripsi', 'qty', 'harga_supply', 'harga_user', 'harga_partai', 'created_by', 'updated_by', 'deleted_by'
+        'kategori_id', 'produk_nama', 'produk_gambar', 'produk_slug', 'produk_deskripsi', 'produk_qty', 'harga_supply', 'harga_user', 'harga_partai', 'created_by', 'updated_by', 'deleted_by'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

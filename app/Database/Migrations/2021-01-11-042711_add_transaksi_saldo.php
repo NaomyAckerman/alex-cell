@@ -22,7 +22,7 @@ class AddTransaksiSaldo extends Migration
 				'type' => 'VARCHAR',
 				'constraint' => '10',
 			],
-			'nama' => [
+			'ar_nama' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128',
 			],

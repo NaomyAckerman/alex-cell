@@ -3,7 +3,7 @@
         <li class="menu-title">Main</li>
 
         <li>
-            <a href="<?= route_to('dashboard'); ?>" class="waves-effect<?= (current_url(true)->getSegment(1) === 'dashboard') ? ' active' : ''; ?>">
+            <a href="<?= route_to('dashboard'); ?>" class="waves-effect<?= (current_url(true)->getSegment(1) === '') ? ' active' : ''; ?>">
                 <i class="mdi mdi-airplay"></i>
                 <span> Dashboard </span>
             </a>

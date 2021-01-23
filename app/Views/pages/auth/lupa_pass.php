@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<?= $this->include('components/login_msg'); ?>
+<?= $this->include('components/msg_block'); ?>
 
 <h2 class="card-title text-center"><?= lang('Auth.forgotPassword') ?></h2>
 <form class="form-horizontal" action="<?= route_to('forgot') ?>" method="post">
