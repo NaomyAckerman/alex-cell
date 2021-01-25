@@ -15,22 +15,29 @@ class ProdukModel extends Model
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [
-        'nama' => [
-            'label'  => 'Nama',
-            'rules'  => 'required|is_unique[produk.nama,id,{id}]',
+        'kategori_id' => [
+            'label'  => 'kategori',
+            'rules'  => 'required',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
-                'is_unique' => 'Maaf. {field} itu sudah diambil. Pilih yang lain.'
+                'required' => 'Anda harus memilih {field} produk.'
             ]
         ],
-        'deskripsi' => [
+        'produk_nama' => [
+            'label'  => 'Nama produk',
+            'rules'  => 'required|is_unique[produk.produk_nama,id,{id}]',
+            'errors' => [
+                'required' => 'Anda harus memilih {field} produk.',
+                'is_unique' => 'Maaf. {field} sudah tersedia.'
+            ]
+        ],
+        'produk_deskripsi' => [
             'label'  => 'Deskripsi',
             'rules'  => 'required',
             'errors' => [
                 'required' => 'Anda harus memilih {field} produk.',
             ]
         ],
-        'qty' => [
+        'produk_qty' => [
             'label'  => 'Qty',
             'rules'  => 'required|numeric',
             'errors' => [
@@ -63,4 +70,9 @@ class ProdukModel extends Model
             ]
         ],
     ];
+
+    public function kategori()
+    {
+        return $this->join('kategori', 'kategori.id = produk.kategori_id')->findAll();
+    }
 }

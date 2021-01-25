@@ -51,6 +51,8 @@ $routes->post('reset-password', 'AuthController::attemptReset');
 $routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
 $routes->get('/produk', 'ProdukController::index', ['as' => 'produk']);
 $routes->get('/get-produk', 'ProdukController::produk', ['as' => 'get-produk']);
+$routes->get('/create-produk', 'ProdukController::create', ['as' => 'create-produk']);
+$routes->post('/store-produk', 'ProdukController::store', ['as' => 'store-produk']);
 
 // Karyawan
 $routes->group('', ['filter' => 'role:karyawan'], function ($routes) {
