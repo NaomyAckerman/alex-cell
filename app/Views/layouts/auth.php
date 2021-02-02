@@ -9,7 +9,7 @@
     <!-- Begin page -->
     <div class="accountbg"></div>
     <div class="wrapper-page">
-
+        <?= $this->include('components/msg_block'); ?>
         <div class="card">
             <div class="card-body">
 

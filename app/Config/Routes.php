@@ -49,10 +49,23 @@ $routes->post('reset-password', 'AuthController::attemptReset');
 
 
 $routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
-$routes->get('/produk', 'ProdukController::index', ['as' => 'produk']);
-$routes->get('/get-produk', 'ProdukController::produk', ['as' => 'get-produk']);
-$routes->get('/create-produk', 'ProdukController::create', ['as' => 'create-produk']);
-$routes->post('/store-produk', 'ProdukController::store', ['as' => 'store-produk']);
+
+$routes->group('konter', function ($routes) {
+	$routes->get('/', 'KonterController::index', ['as' => 'konter']);
+	$routes->get('get-konter', 'KonterController::konter', ['as' => 'info-konter']);
+	$routes->get('create-konter', 'KonterController::create', ['as' => 'tambah-konter']);
+	$routes->post('store-konter', 'KonterController::store', ['as' => 'simpan-konter']);
+});
+
+$routes->group('produk', function ($routes) {
+	$routes->get('/', 'ProdukController::index', ['as' => 'produk']);
+	$routes->get('get-produk', 'ProdukController::produk', ['as' => 'info-produk']);
+	$routes->get('create-produk', 'ProdukController::create', ['as' => 'tambah-produk']);
+	$routes->post('store-produk', 'ProdukController::store', ['as' => 'simpan-produk']);
+	$routes->get('edit-produk/(:any)', 'ProdukController::edit/$1', ['as' => 'edit-produk']);
+	$routes->put('update-produk/(:any)', 'ProdukController::update/$1', ['as' => 'update-produk']);
+	$routes->delete('deleted-produk/(:any)', 'ProdukController::delete/$1', ['as' => 'hapus-produk']);
+});
 
 // Karyawan
 $routes->group('', ['filter' => 'role:karyawan'], function ($routes) {

@@ -2,8 +2,6 @@
 
 <?= $this->section('content'); ?>
 
-<?= $this->include('components/msg_block'); ?>
-
 <form class="form-horizontal m-t-20" action="<?= route_to('login') ?>" method="post">
 
     <?= csrf_field() ?>

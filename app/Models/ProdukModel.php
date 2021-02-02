@@ -26,7 +26,17 @@ class ProdukModel extends Model
             'label'  => 'Nama produk',
             'rules'  => 'required|is_unique[produk.produk_nama,id,{id}]',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
+                'is_unique' => 'Maaf. {field} sudah tersedia.'
+            ]
+        ],
+        'produk_gambar' => [
+            'label'  => 'Gambar produk',
+            'rules'  => 'max_size[produk_gambar,1024]|is_image[produk_gambar]|mime_in[produk_gambar,image/png,image/jpg,image/jpeg]',
+            'errors' => [
+                'max_size' => 'Ukuran file {field} max 1mb.',
+                'is_image' => 'Format file {field} bukan gambar.',
+                'mime_in' => 'File {field} bukan gambar.',
                 'is_unique' => 'Maaf. {field} sudah tersedia.'
             ]
         ],
@@ -34,14 +44,14 @@ class ProdukModel extends Model
             'label'  => 'Deskripsi',
             'rules'  => 'required',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
             ]
         ],
         'produk_qty' => [
-            'label'  => 'Qty',
+            'label'  => 'Qty produk',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],
@@ -49,7 +59,7 @@ class ProdukModel extends Model
             'label'  => 'Harga Supply',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],
@@ -57,7 +67,7 @@ class ProdukModel extends Model
             'label'  => 'Harga User',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],
@@ -65,7 +75,7 @@ class ProdukModel extends Model
             'label'  => 'Harga Partai',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} produk.',
+                'required' => 'Anda harus memilih {field}.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],

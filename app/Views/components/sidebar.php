@@ -16,5 +16,11 @@
                 <span> Produk </span>
             </a>
         </li>
+        <li>
+            <a href="<?= route_to('konter'); ?>" class="waves-effect<?= (current_url(true)->getSegment(1) === 'konter') ? ' active' : ''; ?>">
+                <i class="mdi mdi-home"></i>
+                <span> Konter </span>
+            </a>
+        </li>
     </ul>
 </div>
