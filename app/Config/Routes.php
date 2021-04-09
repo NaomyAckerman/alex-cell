@@ -47,31 +47,44 @@ $routes->post('reset-password', 'AuthController::attemptReset');
 
 
 
-
+// Global // * Done
 $routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
-
-$routes->group('konter', function ($routes) {
-	$routes->get('/', 'KonterController::index', ['as' => 'konter']);
-	$routes->get('get-konter', 'KonterController::konter', ['as' => 'info-konter']);
-	$routes->get('create-konter', 'KonterController::create', ['as' => 'tambah-konter']);
-	$routes->post('store-konter', 'KonterController::store', ['as' => 'simpan-konter']);
+$routes->group('stok', function ($routes) {
+	$routes->get('/', 'StokController::index', ['as' => 'stok']);
+	$routes->get('get-stok', 'StokController::stok', ['as' => 'info-stok']);
+	$routes->post('get-stok', 'StokController::stok', ['as' => 'info-stok']);
 });
 
-$routes->group('produk', function ($routes) {
-	$routes->get('/', 'ProdukController::index', ['as' => 'produk']);
-	$routes->get('get-produk', 'ProdukController::produk', ['as' => 'info-produk']);
-	$routes->get('create-produk', 'ProdukController::create', ['as' => 'tambah-produk']);
-	$routes->post('store-produk', 'ProdukController::store', ['as' => 'simpan-produk']);
-	$routes->get('edit-produk/(:any)', 'ProdukController::edit/$1', ['as' => 'edit-produk']);
-	$routes->put('update-produk/(:any)', 'ProdukController::update/$1', ['as' => 'update-produk']);
-	$routes->delete('deleted-produk/(:any)', 'ProdukController::delete/$1', ['as' => 'hapus-produk']);
+// Admin 
+$routes->group('', ['filter' => 'role:admin'], function ($routes) {
+	// Produk // * Done
+	$routes->group('produk', function ($routes) {
+		$routes->get('/', 'ProdukController::index', ['as' => 'produk']);
+		$routes->get('get-produk', 'ProdukController::produk', ['as' => 'info-produk']);
+		$routes->get('create-produk', 'ProdukController::create', ['as' => 'tambah-produk']);
+		$routes->post('store-produk', 'ProdukController::store', ['as' => 'simpan-produk']);
+		$routes->get('edit-produk/(:any)', 'ProdukController::edit/$1', ['as' => 'edit-produk']);
+		$routes->put('update-produk/(:any)', 'ProdukController::update/$1', ['as' => 'update-produk']);
+		$routes->delete('deleted-produk/(:any)', 'ProdukController::delete/$1', ['as' => 'hapus-produk']);
+	});
+
+	// Konter
+	$routes->group('konter', function ($routes) {
+		$routes->get('/', 'KonterController::index', ['as' => 'konter']);
+		$routes->get('get-konter', 'KonterController::konter', ['as' => 'info-konter']);
+		$routes->get('create-konter', 'KonterController::create', ['as' => 'tambah-konter']);
+		$routes->post('store-konter', 'KonterController::store', ['as' => 'simpan-konter']);
+	});
 });
 
 // Karyawan
 $routes->group('', ['filter' => 'role:karyawan'], function ($routes) {
+	// Stok // * Done
+	$routes->group('stok', function ($routes) {
+		$routes->get('edit-stok', 'StokController::edit', ['as' => 'edit-stok']);
+		$routes->post('update-stok', 'StokController::update', ['as' => 'update-stok']);
+	});
 });
-
-
 
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';

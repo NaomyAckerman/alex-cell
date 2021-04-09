@@ -4,16 +4,18 @@ namespace App\Controllers;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Router\Exceptions\RedirectException;
-use App\Entities\Produk;
-use App\Models\{ProdukModel, KategoriModel};
+use App\Entities\{Produk, Stok};
+use App\Models\{ProdukModel, KategoriModel, StokModel};
 
 class ProdukController extends BaseController
 {
 
-    protected $produk, $eproduk, $kategori;
+    protected $produk, $eproduk, $kategori, $stok, $estok;
 
     public function __construct()
     {
+        $this->stok = new StokModel();
+        $this->estok = new Stok();
         $this->produk = new ProdukModel();
         $this->kategori = new KategoriModel();
         $this->eproduk = new Produk();
@@ -68,6 +70,15 @@ class ProdukController extends BaseController
                 ]);
         }
         if ($file->isValid() && !$file->hasMoved()) $file->move('assets/images/products', $nama_gambar);
+        // add stok per-konter
+        $produk_id = $this->produk->getInsertID();
+        for ($i = 0; $i < 2; $i++) {
+            $this->estok->konter_id = $i + 1;
+            $this->estok->produk_id = $produk_id;
+            $this->estok->stok = 0;
+            $this->estok->sisa_stok = 0;
+            $this->stok->save($this->estok);
+        }
         $data = [
             'status' => 'success',
             'data' => 'Berhasil menyimpan produk baru <strong>' . $this->request->getVar('produk_nama') . '</strong>',

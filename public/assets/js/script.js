@@ -6,6 +6,7 @@ $(function () {
         e.preventDefault();
         tambah_konter($(this));
     });
+    
     //* Info Produk
     produk();
     //* Create Produk
@@ -13,6 +14,10 @@ $(function () {
         e.preventDefault();
         tambah_produk($(this));
     });
+
+    //* Info Stok
+    stok();
+
     //* Alert Login
     let login_msg = $(".login_msg").data();
     if (login_msg) {
@@ -44,6 +49,277 @@ const alert_confirm = (title, message, callback, icon = "warning") => {
         }
     });
 };
+/* Fungsi formatRupiah */
+const formatRupiah = (angka, prefix = 'Rp.') => {
+    var number_string = angka.replace(/[^,\d]/g, "").toString(),
+      split = number_string.split(","),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+      let separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    return `${prefix} ${rupiah}`;
+}
+
+
+// * info Stok
+const stok = () => {
+    const viewStok = $("#content-view-stok");
+    if (viewStok) {
+        $.ajax({
+            url: viewStok.data("url"),
+        })
+            .done((res) => {
+                viewStok.html(res.data);
+                $(".image-popup-no-margins").magnificPopup({
+                    type: "image",
+                    closeOnContentClick: true,
+                    closeBtnInside: false,
+                    fixedContentPos: true,
+                    mainClass: "mfp-no-margins mfp-with-zoom",
+                    image: {
+                        verticalFit: true,
+                    },
+                    zoom: {
+                        enabled: true,
+                        duration: 300,
+                    },
+                });
+                $(".select2").select2({
+                    width: "100%",
+                });
+                edit_stok();
+                infoStokGlobal();
+            })
+            .fail((res) => {
+                let err = res.responseJSON;
+                console.log(err);
+                alert_msg(
+                    `Error ${err.code}`,
+                    `<h6><strong>${err.title}</strong></h6><br>${err.message}`,
+                    "error"
+                );
+            });
+    }
+};
+const infoStokGlobal = () => {
+    $(".form-info-stok").submit(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            beforeSend: () => {
+                $(".btn-info-stok").html(
+                    '<i class="fa fa-spin fa-cog"></i>'
+                );
+                $(".btn-info-stok").attr("disabled", true);
+            },
+        })
+            .done((res) => {
+                $(".btn-info-stok").html("Cari");
+                $(".btn-info-stok").removeAttr("disabled");
+                $(".form-info-stok input[name=csrf_test_name]").val(res.token);
+                let stok_kartu = ``;
+                let stok_acc = ``;
+                $.each(res.data.stok_kartu, function( key, val ) {
+                    stok_kartu += /* html */`
+                        <div class="col-12">
+                            <div class="info-box mt-3">
+                                <span class="info-box-icon">
+                                    ${(() => {
+                                        if (val.produk_gambar) {
+                                            return /* html */`
+                                                <a class="image-popup-no-margins" href='assets/images/products/${val.produk_gambar}'>
+                                                    <img src='assets/images/products/${val.produk_gambar}' class='rounded-circle img-fluid' alt='produk'>
+                                                </a>`
+                                        }
+                                        return /* html */`<img src='https://ui-avatars.com/api/?size=128&bold=true&background=random&color=ffffff&rounded=true&name=${val.produk_nama}' class='rounded-circle img-fluid' alt='produk'>`
+                                    })()}
+                                </span>
+
+                                <div class="info-box-content">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">${val.produk_nama}</span>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">Stok : ${val.stok}</span>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">${formatRupiah(val.harga_user, 'IDR')}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>`;
+                });
+                $.each(res.data.stok_acc, function( key, val ) {
+                    stok_acc += /* html */`
+                        <div class="col-12">
+                            <div class="info-box mt-3">
+                                <span class="info-box-icon">
+                                    ${(() => {
+                                        if (val.produk_gambar) {
+                                            return /* html */`
+                                                <a class="image-popup-no-margins" href='assets/images/products/${val.produk_gambar}'>
+                                                    <img src='assets/images/products/${val.produk_gambar}' class='rounded-circle img-fluid' alt='produk'>
+                                                </a>`
+                                        }
+                                        return /* html */`<img src='https://ui-avatars.com/api/?size=128&bold=true&background=random&color=ffffff&rounded=true&name=${val.produk_nama}' class='rounded-circle img-fluid' alt='produk'>`
+                                    })()}
+                                </span>
+
+                                <div class="info-box-content">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">${val.produk_nama}</span>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">Stok : ${val.stok}</span>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <span class="info-box-text">${formatRupiah(val.harga_user, 'IDR')}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>`;
+                });
+                $("#info-stok-kartu").html(stok_kartu);
+                $("#info-stok-acc").html(stok_acc);
+            })
+            .fail((res) => {
+                let err = res.responseJSON;
+                console.log(err);
+                alert_msg(
+                    `Error ${err.code}`,
+                    `<h6><strong>${err.title}</strong></h6><br>${err.message}`,
+                    "error"
+                );
+                stok();
+                $(".btn-info-stok").html("Cari");
+            });
+    });
+}
+//* Modal Edit Stok
+const edit_stok = () => {
+    $("body").on("click", ".edit-stok", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        $.ajax({
+            url: $(this).attr("href"),
+        })
+            .done((res) => {
+                $("#modal-stok").html(res.data);
+                $("#modal-edit-stok").modal("show");
+                $('#modal-edit-stok').on('hidden.bs.modal', function (e) {
+                    $("#modal-stok").html(null);
+                })
+                $(".select2").select2({
+                    width: "100%",
+                });
+                update_stok();
+            })
+            .fail((res) => {
+                let err = res.responseJSON;
+                console.log(err);
+                alert_msg(
+                    `Error ${err.code}`,
+                    `<h6><strong>${err.title}</strong></h6><br>${err.message}`,
+                    "error"
+                );
+                stok();
+            });
+    });
+};
+//* Update Stok
+const update_stok = () => {
+    $(".update-stok").submit(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            beforeSend: () => {
+                $(".btn-update-stok").html(
+                    '<i class="fa fa-spin fa-cog"></i>'
+                );
+            },
+        })
+            .done((res) => {
+                $("#modal-edit-stok").modal("hide");
+                $(".btn-update-stok").html("Update");
+                alert_msg("Berhasil", res.data);
+                stok();
+            })
+            .fail((res) => {
+                let err = res.responseJSON;
+                console.log(err);
+                $(".update-stok input[name=csrf_test_name]").val(
+                    err.token
+                );
+                if (err.errors) {
+                    $(".update-stok input,.update-stok select").each((i, obj) => {
+                        let errinp = err.errors[obj.name];
+                        if (errinp) {
+                            $(`#${obj.name.replaceAll("_", "-")}`).addClass(
+                                "is-invalid"
+                            );
+                            $(`#${obj.name.replaceAll("_", "-")}`).removeClass(
+                                "is-valid"
+                            );
+                            $(`#${obj.name.replaceAll("_", "-")}-err`).text(
+                                errinp
+                            );
+                        } else {
+                            $(`#${obj.name.replaceAll("_", "-")}`).removeClass(
+                                "is-invalid"
+                            );
+                            $(`#${obj.name.replaceAll("_", "-")}`).addClass(
+                                "is-valid"
+                            );
+                            $(`#${obj.name.replaceAll("_", "-")}-err`).text("");
+                        }
+                    });
+                }else if (err.empty_qty) {
+                    alert_msg(
+                        `Warning`,
+                        `<h6><strong>${err.empty_qty.title}</strong></h6><br>${err.empty_qty.message}`,
+                        "warning"
+                    );
+                    stok();
+                }else {
+                    alert_msg(
+                        `Error ${err.code}`,
+                        `<h6><strong>${err.title}</strong></h6><br>${err.message}`,
+                        "error"
+                    );
+                    stok();
+                }
+                $(".btn-update-stok").html("Update");
+            });
+    });
+};
+
+
 //* Upload Produk gambar
 const gambarproduk = () => {
     let produkimgfile = $("input[type=file]#produk-gambar");
@@ -112,13 +388,16 @@ const produk = () => {
     }
 };
 //* Modal Tambah Produk
-const tambah_produk = (e) => {
+const tambah_produk = e => {
     $.ajax({
         url: e.attr("href"),
     })
         .done((res) => {
             $("#modal-produk").html(res.data);
             $("#modal-tambah-produk").modal("show");
+            $('#modal-tambah-produk').on('hidden.bs.modal', function (e) {
+                $("#modal-produk").html(null);
+            })
             $("textarea.textarea").maxlength({
                 alwaysShow: true,
                 placement: "top",
@@ -209,14 +488,19 @@ const simpan_produk = () => {
 };
 //* Modal Edit Produk
 const edit_produk = () => {
-    $(".edit-produk").click(function (e) {
+    $("body").on("click", ".edit-produk", function (e) {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         $.ajax({
             url: $(this).attr("href"),
         })
             .done((res) => {
                 $("#modal-produk").html(res.data);
                 $("#modal-edit-produk").modal("show");
+                $('#modal-edit-produk').on('hidden.bs.modal', function (e) {
+                    $("#modal-produk").html(null);
+                })
                 $(".produk-img-icon").addClass("d-none");
                 $(".produk-img").removeClass("d-none");
                 $("textarea.textarea").maxlength({
@@ -310,8 +594,10 @@ const update_produk = () => {
 };
 //* Delete Produk
 const delete_produk = () => {
-    $(".hapus-produk").submit(function (e) {
+    $("body").on("submit", ".hapus-produk", function (e) {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         alert_confirm(
             "Hapus",
             `Hapus produk <strong>${

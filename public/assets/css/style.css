@@ -3731,3 +3731,7 @@ img.img {
     background: white;
     border-radius: 5px;
 }
+
+body {
+    padding-right: 0 !important;
+}

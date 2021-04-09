@@ -19,17 +19,28 @@ class StokModel extends Model
             'label'  => 'Stok',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} stok.',
+                'required' => 'Anda harus memasukkan {field}.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],
-        'sisa_stok' => [
-            'label'  => 'Sisa Stok',
-            'rules'  => 'required|numeric',
+        // 'sisa_stok' => [
+        //     'label'  => 'Sisa Stok',
+        //     'rules'  => 'required|numeric',
+        //     'errors' => [
+        //         'required' => 'Anda harus memasukkan {field}.',
+        //         'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
+        //     ]
+        // ],
+        'produk_id' => [
+            'label'  => 'Produk',
+            'rules'  => 'required',
             'errors' => [
-                'required' => 'Anda harus memilih {field} stok.',
-                'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
+                'required' => 'Anda harus memilih {field}.'
             ]
         ],
     ];
+    public function produk()
+    {
+        return $this->join('produk', 'produk.id = stok.produk_id')->findAll();
+    }
 }

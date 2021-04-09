@@ -10,7 +10,7 @@
             <th>Harga User</th>
             <th>Harga Reseller</th>
             <th>Deskripsi</th>
-            <th>#</th>
+            <th>Action</th>
         </tr>
     </thead>
 
