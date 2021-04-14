@@ -11,11 +11,11 @@ class TransaksiAccModel extends Model
     protected $returnType = 'App\Entities\Transaksiacc';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'produk_id', 'trx_acc_qty', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'produk_id', 'trx_acc_qty', 'created_by', 'updated_by', 'deleted_by', 'created_at'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [
-        'qty' => [
+        'trx_acc_qty' => [
             'label'  => 'Qty',
             'rules'  => 'required|numeric',
             'errors' => [
@@ -24,4 +24,8 @@ class TransaksiAccModel extends Model
             ]
         ],
     ];
+    public function produk()
+    {
+        return $this->join('produk', 'produk.id = transaksi_kartu.produk_id')->findAll();
+    }
 }

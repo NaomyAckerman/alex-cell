@@ -11,7 +11,7 @@ class StokModel extends Model
     protected $returnType = 'App\Entities\Stok';
     protected $useSoftDeletes = true;
     protected $allowedFields = [
-        'konter_id', 'produk_id', 'stok', 'sisa_stok', 'created_by', 'updated_by', 'deleted_by'
+        'konter_id', 'produk_id', 'stok', 'sisa_stok', 'stok_terjual', 'created_by', 'updated_by', 'deleted_by', 'created_at'
     ];
     protected $useTimestamps = true;
     protected $validationRules    = [

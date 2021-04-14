@@ -22,9 +22,9 @@ class AddTransaksiPartai extends Migration
 				'type' => 'INT',
 				'unsigned' => true,
 			],
-			'user_id' => [
-				'type' => 'INT',
-				'unsigned' => true,
+			'reseller' => [
+				'type' => 'VARCHAR',
+				'constraint' => '128',
 			],
 			'trx_partai_qty' => [
 				'type' => 'INT',
@@ -55,7 +55,7 @@ class AddTransaksiPartai extends Migration
 		$this->forge->addPrimaryKey('id');
 		$this->forge->addForeignKey('produk_id', 'produk', 'id', 'CASCADE', 'CASCADE');
 		$this->forge->addForeignKey('konter_id', 'konter', 'id', 'CASCADE', 'CASCADE');
-		$this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+		// $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('transaksi_partai');
 	}
 

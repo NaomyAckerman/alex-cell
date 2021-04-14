@@ -6,6 +6,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Router\Exceptions\RedirectException;
 use App\Entities\{Produk, Stok};
 use App\Models\{ProdukModel, KategoriModel, StokModel};
+use phpDocumentor\Reflection\Types\Null_;
 
 class ProdukController extends BaseController
 {
@@ -76,7 +77,7 @@ class ProdukController extends BaseController
             $this->estok->konter_id = $i + 1;
             $this->estok->produk_id = $produk_id;
             $this->estok->stok = 0;
-            $this->estok->sisa_stok = 0;
+            $this->estok->sisa_stok = NULL;
             $this->stok->save($this->estok);
         }
         $data = [

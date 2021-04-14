@@ -4,6 +4,6 @@ namespace App\Entities;
 
 use CodeIgniter\Entity;
 
-class ClassName extends Entity
+class Transaksi extends Entity
 {
 }

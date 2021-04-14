@@ -23,7 +23,7 @@ class TransaksiSaldoModel extends Model
                 'alpha_numeric' => 'Maaf. format {field} salah, gunakan format alpha numeric!.'
             ]
         ],
-        'nama' => [
+        'ar_nama' => [
             'label'  => 'Nama',
             'rules'  => 'required',
             'errors' => [

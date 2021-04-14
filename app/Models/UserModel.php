@@ -120,4 +120,11 @@ class UserModel extends Model
 
         return $data;
     }
+    public function in_group($role)
+    {
+        return $this->where('auth_groups.name', $role)
+            ->join('auth_groups_users', 'auth_groups_users.user_id = users.id')
+            ->join('auth_groups', 'auth_groups.id = auth_groups_users.group_id')
+            ->findAll();
+    }
 }

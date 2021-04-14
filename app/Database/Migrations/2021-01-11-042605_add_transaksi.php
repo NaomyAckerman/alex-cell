@@ -20,27 +20,39 @@ class AddTransaksi extends Migration
 			],
 			'total_pulsa' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_saldo' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_acc' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_kartu' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_partai' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_tunai' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
+			],
+			'total_modal' => [
+				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_keluar' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'total_trx' => [
 				'type' => 'BIGINT',
+				'null'		=> true,
 			],
 			'created_by' => [
 				'type' 			=> 'INT',

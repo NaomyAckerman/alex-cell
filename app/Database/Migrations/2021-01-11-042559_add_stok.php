@@ -24,9 +24,15 @@ class AddStok extends Migration
 			],
 			'stok' => [
 				'type' => 'INT',
+				'null'		=> true,
 			],
 			'sisa_stok' => [
 				'type' => 'INT',
+				'null'		=> true,
+			],
+			'stok_terjual' => [
+				'type' => 'INT',
+				'null'		=> true,
 			],
 			'created_by' => [
 				'type' 			=> 'INT',

@@ -38,21 +38,33 @@ class StokController extends BaseController
         if ($this->request->getMethod() === 'post') {
             $data['data'] = [
                 'stok_kartu' => $this->stok
-                    ->where(['kategori_id' => 1, 'konter_id' => $this->request->getVar('konter_id')])
-                    ->produk(),
+                    ->where([
+                        'kategori_id' => 1,
+                        'konter_id' => $this->request->getVar('konter_id'),
+                        'sisa_stok' => NULL,
+                    ])->orderBy('stok.created_at')->produk(),
                 'stok_acc' => $this->stok
-                    ->where(['kategori_id' => 2, 'konter_id' => $this->request->getVar('konter_id')])
-                    ->produk()
+                    ->where([
+                        'kategori_id' => 2,
+                        'konter_id' => $this->request->getVar('konter_id'),
+                        'sisa_stok' => NULL
+                    ])->orderBy('stok.created_at')->produk()
             ];
             $data['token'] = csrf_hash();
         } else {
             $data['data'] = \view('pages/stok/stok', [
                 'stok_kartu' => $this->stok
-                    ->where(['kategori_id' => 1, 'konter_id' => $this->konter_id])
-                    ->produk(),
+                    ->where([
+                        'kategori_id' => 1,
+                        'konter_id' => $this->konter_id,
+                        'sisa_stok' => NULL,
+                    ])->orderBy('stok.created_at')->produk(),
                 'stok_acc' => $this->stok
-                    ->where(['kategori_id' => 2, 'konter_id' => $this->konter_id])
-                    ->produk(),
+                    ->where([
+                        'kategori_id' => 2,
+                        'konter_id' => $this->konter_id,
+                        'sisa_stok' => NULL
+                    ])->orderBy('stok.created_at')->produk(),
                 'konter' => $konter
             ]);
         };
@@ -67,9 +79,7 @@ class StokController extends BaseController
         $data = [
             'status' => 'success',
             'data' => \view('pages/stok/edit_stok', [
-                'produk' => $this->stok
-                    ->where('konter_id', $this->konter_id)
-                    ->produk()
+                'produk' => $this->produk->findAll()
             ]),
         ];
         return $this->response->setStatusCode(200)
@@ -100,8 +110,9 @@ class StokController extends BaseController
         // query data stok terakhir
         $data_stok = $this->stok->where([
             'produk_id' => $produk_id,
-            'konter_id' => $this->konter_id
-        ])->first();
+            'konter_id' => $this->konter_id,
+            'sisa_stok' => NULL
+        ])->orderBy('created_at', 'DESC')->first();
         $new_stok = ($data_stok && $inp_stok) ? ($data_stok->stok + $inp_stok) : $inp_stok;
         $stok_id = $data_stok ? $data_stok->id : null;
 

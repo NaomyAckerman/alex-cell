@@ -16,6 +16,8 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
+use CodeIgniter\I18n\Time;
+
 
 class BaseController extends Controller
 {
@@ -42,5 +44,8 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+		// Time Now
+		$this->now = Time::parse(Time::now());
+		$this->date_now = ($this->now->getHour() < 5) ?  $this->now->setDay($this->now->day - 1) : $this->now;
 	}
 }
