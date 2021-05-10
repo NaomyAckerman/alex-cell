@@ -19,7 +19,7 @@ class TransaksiSaldoModel extends Model
             'label'  => 'Saldo',
             'rules'  => 'required|alpha_numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} transaksi saldo.',
+                'required' => 'Anda harus memasukkan {field} transaksi saldo.',
                 'alpha_numeric' => 'Maaf. format {field} salah, gunakan format alpha numeric!.'
             ]
         ],
@@ -27,14 +27,14 @@ class TransaksiSaldoModel extends Model
             'label'  => 'Nama',
             'rules'  => 'required',
             'errors' => [
-                'required' => 'Anda harus memilih {field} transaksi saldo.',
+                'required' => 'Anda harus memasukkan {field} transaksi saldo.',
             ]
         ],
         'saldo' => [
             'label'  => 'Saldo',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} transaksi saldo.',
+                'required' => 'Anda harus memasukkan {field} transaksi saldo.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],

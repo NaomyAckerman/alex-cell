@@ -91,14 +91,14 @@
             </div>
         </div>
         <div class="col-6">
-            <button type="submit" class="btn-info-stok btn btn-primary m-b-10 m-l-10 waves-effect waves-light">Cari</button>
+            <button type="submit" class="btn-info-stok btn btn-primary m-b-10 m-l-10 waves-effect waves-light text-white">Cari</button>
         </div>
     </form>
 
     <div class="row">
         <div class="col-6">
-            <div class="card">
-                <h4 class="card-header mt-0">Stok Kartu</h4>
+            <div class="card shadow">
+                <h4 class="card-header mt-0 text-white bg-primary">Stok Kartu</h4>
                 <div id="info-stok-kartu">
                     <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -111,8 +111,8 @@
             <!-- /.card -->
         </div>
         <div class="col-6">
-            <div class="card">
-                <h4 class="card-header mt-0">Stok Acc</h4>
+            <div class="card shadow">
+                <h4 class="card-header mt-0 text-white bg-primary">Stok Acc</h4>
                 <div id="info-stok-acc">
                     <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

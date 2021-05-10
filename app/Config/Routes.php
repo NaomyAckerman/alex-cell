@@ -49,14 +49,19 @@ $routes->post('reset-password', 'AuthController::attemptReset');
 
 // Global // * Done
 $routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
+$routes->group('profile', function ($routes) {
+	$routes->get('/', 'UserController::profile', ['as' => 'profile']);
+	$routes->get('info-profile', 'UserController::info_profile', ['as' => 'info-profile']);
+	$routes->put('update-profile/(:any)', 'UserController::update_profile/$1', ['as' => 'update-profile']);
+});
 $routes->group('stok', function ($routes) {
 	$routes->get('/', 'StokController::index', ['as' => 'stok']);
 	$routes->get('get-stok', 'StokController::stok', ['as' => 'info-stok']);
 	$routes->post('get-stok', 'StokController::stok', ['as' => 'info-stok']);
 });
 
-// Admin 
-$routes->group('', ['filter' => 'role:admin'], function ($routes) {
+// Owner 
+$routes->group('', ['filter' => 'role:owner,admin'], function ($routes) {
 	// Produk // * Done
 	$routes->group('produk', function ($routes) {
 		$routes->get('/', 'ProdukController::index', ['as' => 'produk']);
@@ -68,12 +73,39 @@ $routes->group('', ['filter' => 'role:admin'], function ($routes) {
 		$routes->delete('deleted-produk/(:any)', 'ProdukController::delete/$1', ['as' => 'hapus-produk']);
 	});
 
-	// Konter // ! belum
+	// User // * Done
+	$routes->group('user', function ($routes) {
+		$routes->get('/', 'UserController::index', ['as' => 'user']);
+		$routes->get('get-user', 'UserController::user', ['as' => 'info-user']);
+		$routes->post('block-user/(:any)', 'UserController::block/$1', ['as' => 'block-user']);
+		$routes->delete('deleted-user/(:any)', 'UserController::delete/$1', ['as' => 'hapus-user']);
+	});
+
+	// Transaksi // * done
+	$routes->group('transaksi', function ($routes) {
+		$routes->get('info', 'TransaksiController::info_transaksi', ['as' => 'info-trx']);
+		$routes->post('info', 'TransaksiController::info_transaksi', ['as' => 'info-trx']);
+		$routes->get('report-trx/(:any)/(:any)', 'TransaksiController::report/$1/$2', ['as' => 'report-trx']);
+	});
+
+	// Konter // * done
 	$routes->group('konter', function ($routes) {
 		$routes->get('/', 'KonterController::index', ['as' => 'konter']);
 		$routes->get('get-konter', 'KonterController::konter', ['as' => 'info-konter']);
 		$routes->get('create-konter', 'KonterController::create', ['as' => 'tambah-konter']);
 		$routes->post('store-konter', 'KonterController::store', ['as' => 'simpan-konter']);
+		$routes->get('edit-konter/(:any)', 'KonterController::edit/$1', ['as' => 'edit-konter']);
+		$routes->put('update-konter/(:any)', 'KonterController::update/$1', ['as' => 'update-konter']);
+		$routes->delete('deleted-konter/(:any)', 'KonterController::delete/$1', ['as' => 'hapus-konter']);
+	});
+});
+
+// Admin 
+$routes->group('', ['filter' => 'role:admin'], function ($routes) {
+	// User // * Done
+	$routes->group('user', function ($routes) {
+		$routes->get('create-user', 'UserController::create', ['as' => 'tambah-user']);
+		$routes->post('store-user', 'UserController::store', ['as' => 'simpan-user']);
 	});
 });
 
@@ -84,35 +116,49 @@ $routes->group('', ['filter' => 'role:karyawan'], function ($routes) {
 		$routes->get('edit-stok', 'StokController::edit', ['as' => 'edit-stok']);
 		$routes->post('update-stok', 'StokController::update', ['as' => 'update-stok']);
 	});
+
 	// Transaksi // * done
 	$routes->group('transaksi', function ($routes) {
-		// * Rekap done
-		$routes->get('rekap', 'TransaksiController::index', ['as' => 'transaksi-rekap']);
-		$routes->post('rekap', 'TransaksiController::index', ['as' => 'trx-rekap']);
-		// * Kartu done
-		$routes->get('kartu', 'TransaksiController::kartu', ['as' => 'transaksi-kartu']);
-		$routes->post('kartu', 'TransaksiController::kartu', ['as' => 'transaksi-kartu']);
-		$routes->post('kartu-store', 'TransaksiController::kartu_store', ['as' => 'transaksi-kartu-store']);
-		$routes->get('kartu/(:any)', 'TransaksiController::kartu_edit/$1', ['as' => 'transaksi-kartu-edit']);
-		$routes->put('kartu-update/(:any)', 'TransaksiController::kartu_update/$1', ['as' => 'transaksi-kartu-update']);
-		// * Acc done
-		$routes->get('acc', 'TransaksiController::acc', ['as' => 'transaksi-acc']);
-		$routes->post('acc', 'TransaksiController::acc', ['as' => 'transaksi-acc']);
-		$routes->post('acc-store', 'TransaksiController::acc_store', ['as' => 'transaksi-acc-store']);
-		$routes->get('acc/(:any)', 'TransaksiController::acc_edit/$1', ['as' => 'transaksi-acc-edit']);
-		$routes->put('acc-update/(:any)', 'TransaksiController::acc_update/$1', ['as' => 'transaksi-acc-update']);
-		// * Reseller done 
-		$routes->get('reseller', 'TransaksiController::reseller', ['as' => 'transaksi-reseller']);
-		$routes->post('reseller', 'TransaksiController::reseller', ['as' => 'transaksi-reseller']);
-		$routes->post('reseller-store', 'TransaksiController::reseller_store', ['as' => 'transaksi-reseller-store']);
-		$routes->delete('reseller-deleted/(:any)', 'TransaksiController::reseller_delete/$1', ['as' => 'transaksi-reseller-hapus']);
-		// * Saldo
-		$routes->get('saldo', 'TransaksiController::saldo', ['as' => 'transaksi-saldo']);
-		$routes->post('saldo', 'TransaksiController::saldo', ['as' => 'transaksi-saldo']);
-		$routes->post('saldo-store', 'TransaksiController::saldo_store', ['as' => 'trx-saldo-store']);
-		$routes->get('saldo/(:any)', 'TransaksiController::saldo_edit/$1', ['as' => 'trx-saldo-edit']);
-		$routes->put('saldo-update/(:any)', 'TransaksiController::saldo_update/$1', ['as' => 'trx-saldo-update']);
-		$routes->delete('saldo-delete/(:any)', 'TransaksiController::saldo_delete/$1', ['as' => 'trx-saldo-delete']);
+		// * REKAP
+		$routes->get('rekap', 'TransaksiController::index', ['as' => 'trx-rekap']);
+		$routes->get('get-rekap', 'TransaksiController::rekap', ['as' => 'info-trx-rekap']);
+		$routes->post('submit-rekap', 'TransaksiController::rekap', ['as' => 'submit-trx-rekap']);
+
+		// * TRX SALDO
+		$routes->get('saldo', 'TransaksiController::index', ['as' => 'trx-saldo']);
+		$routes->get('get-saldo', 'TransaksiController::saldo', ['as' => 'info-trx-saldo']);
+		$routes->post('submit-saldo', 'TransaksiController::saldo', ['as' => 'submit-trx-saldo']);
+		$routes->get('create-saldo', 'TransaksiController::saldo_create', ['as' => 'tambah-trx-saldo']);
+		$routes->post('store-saldo', 'TransaksiController::saldo_store', ['as' => 'simpan-trx-saldo']);
+		$routes->get('edit-saldo/(:any)', 'TransaksiController::saldo_edit/$1', ['as' => 'edit-trx-saldo']);
+		$routes->put('update-saldo/(:any)', 'TransaksiController::saldo_update/$1', ['as' => 'update-trx-saldo']);
+		$routes->delete('deleted-saldo/(:any)', 'TransaksiController::saldo_delete/$1', ['as' => 'hapus-trx-saldo']);
+
+		// * TRX RESELLER
+		$routes->get('reseller', 'TransaksiController::index', ['as' => 'trx-reseller']);
+		$routes->get('get-reseller', 'TransaksiController::reseller', ['as' => 'info-trx-reseller']);
+		$routes->post('submit-reseller', 'TransaksiController::reseller', ['as' => 'submit-trx-reseller']);
+		$routes->get('create-reseller', 'TransaksiController::reseller_create', ['as' => 'tambah-trx-reseller']);
+		$routes->post('store-reseller', 'TransaksiController::reseller_store', ['as' => 'simpan-trx-reseller']);
+		$routes->delete('deleted-reseller/(:any)', 'TransaksiController::reseller_delete/$1', ['as' => 'hapus-trx-reseller']);
+
+		// * TRX ACC
+		$routes->get('acc', 'TransaksiController::index', ['as' => 'trx-acc']);
+		$routes->get('get-acc', 'TransaksiController::acc', ['as' => 'info-trx-acc']);
+		$routes->post('submit-acc', 'TransaksiController::acc', ['as' => 'submit-trx-acc']);
+		$routes->get('create-acc', 'TransaksiController::acc_create', ['as' => 'tambah-trx-acc']);
+		$routes->post('store-acc', 'TransaksiController::acc_store', ['as' => 'simpan-trx-acc']);
+		$routes->get('edit-acc/(:any)', 'TransaksiController::acc_edit/$1', ['as' => 'edit-trx-acc']);
+		$routes->put('update-acc/(:any)', 'TransaksiController::acc_update/$1', ['as' => 'update-trx-acc']);
+
+		// * TRX KARTU
+		$routes->get('kartu', 'TransaksiController::index', ['as' => 'trx-kartu']);
+		$routes->get('get-kartu', 'TransaksiController::kartu', ['as' => 'info-trx-kartu']);
+		$routes->post('submit-kartu', 'TransaksiController::kartu', ['as' => 'submit-trx-kartu']);
+		$routes->get('create-kartu', 'TransaksiController::kartu_create', ['as' => 'tambah-trx-kartu']);
+		$routes->post('store-kartu', 'TransaksiController::kartu_store', ['as' => 'simpan-trx-kartu']);
+		$routes->get('edit-kartu/(:any)', 'TransaksiController::kartu_edit/$1', ['as' => 'edit-trx-kartu']);
+		$routes->put('update-kartu/(:any)', 'TransaksiController::kartu_update/$1', ['as' => 'update-trx-kartu']);
 	});
 });
 

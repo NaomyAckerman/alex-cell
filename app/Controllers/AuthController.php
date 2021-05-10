@@ -64,15 +64,17 @@ class AuthController extends BaseController
 	{
 		$rules = [
 			'login' => [
+				'label' => 'Username / Email',
 				'rules'  => 'required',
 				'errors' => [
-					'required' => 'Anda harus mengisi Username / Email'
+					'required' => 'Anda harus mengisi {field}.'
 				]
 			],
 			'password' => [
+				'label' => 'Password',
 				'rules'  => 'required',
 				'errors' => [
-					'required' => 'Anda harus mengisi Username / Email'
+					'required' => 'Anda harus mengisi {field}.'
 				]
 			],
 		];

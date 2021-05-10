@@ -78,6 +78,7 @@ class ProdukController extends BaseController
             $this->estok->produk_id = $produk_id;
             $this->estok->stok = 0;
             $this->estok->sisa_stok = NULL;
+            $this->estok->stok_terjual = NULL;
             $this->stok->save($this->estok);
         }
         $data = [

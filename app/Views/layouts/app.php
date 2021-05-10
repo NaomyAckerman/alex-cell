@@ -80,6 +80,8 @@
 
     <?= $this->include('components/footer'); ?>
 
+    <?= $this->renderSection('grafik'); ?>
+
 </body>
 
 </html>

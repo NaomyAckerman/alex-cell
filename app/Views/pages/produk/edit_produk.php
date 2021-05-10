@@ -94,8 +94,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary m-b-10 m-l-10 waves-effect waves-light" data-dismiss="modal">kembali</button>
-                    <button type="submit" class="btn-update-produk btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light">Update</button>
+                    <button type="button" class="btn btn-sm btn-secondary m-b-10 m-l-10 waves-effect waves-light text-white" data-dismiss="modal">kembali</button>
+                    <button type="submit" class="btn-update-produk btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light text-white">Update</button>
                 </div>
             </form>
         </div>

@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary m-b-10 m-l-10 waves-effect waves-light" data-dismiss="modal">kembali</button>
-                    <button type="submit" class="btn-update-stok btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light">Simpan</button>
+                    <button type="button" class="btn btn-sm btn-secondary m-b-10 m-l-10 waves-effect waves-light text-white" data-dismiss="modal">kembali</button>
+                    <button type="submit" class="btn-update-stok btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light text-white">Simpan</button>
                 </div>
             </form>
         </div>

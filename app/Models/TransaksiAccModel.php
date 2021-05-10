@@ -16,10 +16,10 @@ class TransaksiAccModel extends Model
     protected $useTimestamps = true;
     protected $validationRules    = [
         'trx_acc_qty' => [
-            'label'  => 'Qty',
+            'label'  => 'sisa',
             'rules'  => 'required|numeric',
             'errors' => [
-                'required' => 'Anda harus memilih {field} transaksi acc.',
+                'required' => 'Anda harus memasukkan {field} transaksi acc.',
                 'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
             ]
         ],

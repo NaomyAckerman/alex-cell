@@ -9,7 +9,7 @@
             <h3 class="card-title d-inline">Data <?= $title; ?> <?= (in_groups('karyawan') ? $konter->konter_nama : null) ?></h3>
             <?php if (in_groups('karyawan')) : ?>
                 <!-- Button trigger modal -->
-                <a href="<?= route_to('edit-stok'); ?>" class="edit-stok btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light float-right">
+                <a href="<?= route_to('edit-stok'); ?>" class="edit-stok btn btn-sm btn-primary m-b-10 m-l-10 waves-effect waves-light text-white float-right">
                     <i class="mdi mdi-wallet-giftcard"></i>
                     Stok
                 </a>

@@ -39,7 +39,7 @@ return [
     'errorEmailSent'            => 'Tidak dapat mengirim email dengan instruksi pengaturan ulang kata sandi ke: {0}',
 
     // Passwords
-    'errorPasswordLength'       => 'Passwords must be at least {0, number} characters long.',
+    'errorPasswordLength'       => 'Kata sandi setidaknya harus {0, number} karakter.',
     'suggestPasswordLength'     => 'Lewati frasa - hingga 255 karakter - buat kata sandi yang lebih aman dan mudah diingat.',
     'errorPasswordCommon'       => 'Kata sandi tidak boleh menjadi kata sandi yang umum.',
     'suggestPasswordCommon'     => 'The password was checked against over 65k commonly used passwords or passwords that have been leaked through hacks.',
@@ -87,8 +87,8 @@ return [
     'signIn'                    => 'Sign In',
     'alreadyRegistered'         => 'Already registered?',
     'weNeverShare'              => 'We\'ll never share your email with anyone else.',
-    'resetYourPassword'         => 'Reset Your Password',
-    'enterCodeEmailPassword'    => 'Enter the code you received via email, your email address, and your new password.',
+    'resetYourPassword'         => 'Reset password Anda',
+    'enterCodeEmailPassword'    => 'Masukkan kode yang Anda terima melalui email, alamat email Anda, dan kata sandi baru Anda.',
     'token'                     => 'Token',
     'newPassword'               => 'New Password',
     'newPasswordRepeat'         => 'Repeat New Password',

@@ -29,15 +29,15 @@
                 <td><?= $item->konter_no_telp ?></td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <form action="<?= route_to('hapus-produk', $item->id); ?>" class="hapus-produk" method="post">
+                        <form action="<?= route_to('hapus-konter', $item->id); ?>" class="hapus-konter" method="post">
                             <input type="hidden" name="_method" value="DELETE" />
-                            <input type="hidden" name="produk" value="<?= $item->konter_nama; ?>" />
+                            <input type="hidden" name="konter" value="<?= $item->konter_nama; ?>" />
                             <?= csrf_field(); ?>
                             <div class="btn-group btn-group-sm">
-                                <a href="<?= route_to('edit-produk', $item->id); ?>" class="edit-produk tabledit-edit-button btn btn-sm btn-warning m-b-10 m-l-10 waves-effect waves-light text-white" style="float: none; margin: 5px;">
+                                <a href="<?= route_to('edit-konter', $item->id); ?>" class="edit-konter tabledit-edit-button btn btn-sm btn-warning m-b-10 m-l-10 waves-effect waves-light text-white" style="float: none; margin: 5px;">
                                     <i class="mdi mdi-table-edit"></i>
                                 </a>
-                                <button type="submit" class="btn-hapus-produk tabledit-delete-button btn btn-sm btn-danger m-b-10 m-l-10 waves-effect waves-light" style="float: none; margin: 5px;">
+                                <button type="submit" class="btn-hapus-konter tabledit-delete-button btn btn-sm btn-danger m-b-10 m-l-10 waves-effect waves-light text-white" style="float: none; margin: 5px;">
                                     <i class="mdi mdi-delete"></i>
                                 </button>
                             </div>

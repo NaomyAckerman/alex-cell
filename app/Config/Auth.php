@@ -32,7 +32,7 @@ class Auth extends \Myth\Auth\Config\Auth
         'login' => 'App\Views\pages\auth\login',
         'register' => 'App\Views\Auth\register',
         'forgot' => 'App\Views\pages\auth\lupa_pass',
-        'reset' => 'App\Views\Auth\reset',
+        'reset' => 'App\Views\pages\auth\reset',
         'emailForgot' => 'App\Views\Auth\emails\forgot',
         'emailActivation' => 'App\Views\Auth\emails\activation',
     ];
@@ -166,7 +166,7 @@ class Auth extends \Myth\Auth\Config\Auth
      * uncomment the "ARGON2i/D Algorithm" options to suit your needs
      */
 
-    public $hashAlgorithm = PASSWORD_BCRYPT;
+    public $hashAlgorithm = PASSWORD_DEFAULT;
 
     /* --------------------------------------------------------------------
      * ARGON2i/D Algorithm options

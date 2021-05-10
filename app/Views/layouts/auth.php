@@ -13,8 +13,10 @@
         <div class="card">
             <div class="card-body">
 
-                <h3 class="text-center mt-0 m-b-15">
-                    <a href="<?= route_to('login') ?>" class="logo logo-admin"><img src="assets/images/logo.png" height="24" alt="logo"></a>
+                <h3 class="text-center mt-4 m-b-15">
+                    <a href="<?= route_to('login') ?>" class="logo logo-admin"><img src="assets/images/brand/ar.png" class="w-25" alt="logo">
+                        <div>Alex Cell</div>
+                    </a>
                 </h3>
 
                 <div class="p-3">

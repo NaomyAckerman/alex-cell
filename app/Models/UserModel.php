@@ -15,16 +15,61 @@ class UserModel extends Model
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'konter_id', 'email', 'username', 'avatar', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
+        'konter_id', 'email', 'alamat', 'no_telp', 'jenkel', 'username', 'avatar', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
     ];
 
     protected $useTimestamps = true;
 
     protected $validationRules = [
-        'email'         => 'required|valid_email|is_unique[users.email,id,{id}]',
-        'username'      => 'required|alpha_numeric_punct|min_length[3]|is_unique[users.username,id,{id}]',
-        'password_hash' => 'required',
+        'konter_id' => [
+            'label'  => 'Konter',
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Anda harus memilih {field}.'
+            ]
+        ],
+        'email' => [
+            'label'  => 'Email',
+            'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
+            'errors' => [
+                'required' => 'Anda harus memasukkan {field}.',
+                'valid_email' => '{field} tidak valid.',
+                'is_unique' => '{field} sudah tersedia.'
+            ]
+        ],
+        'username' => [
+            'label'  => 'Username',
+            'rules'  => 'required|alpha_numeric_punct|min_length[3]|is_unique[users.username,id,{id}]',
+            'errors' => [
+                'required' => 'Anda harus memasukkan {field}.',
+                'min_length' => '{field} kurang dari 3.',
+                'is_unique' => '{field} sudah tersedia.'
+            ]
+        ],
+        'password_hash' => [
+            'label'  => 'Password',
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Anda harus memasukkan {field}.'
+            ]
+        ],
+        'alamat' => [
+            'label'  => 'Alamat',
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Anda harus memasukkan {field}.'
+            ]
+        ],
+        'no_telp' => [
+            'label'  => 'No Telp',
+            'rules'  => 'required|numeric|exact_length[11,13,12]',
+            'errors' => [
+                'required' => 'Anda harus memasukkan {field}.',
+                'numeric' => '{field} harus berupa angka.',
+                'exact_length' => 'Jumlah {field} tidak valid.'
+            ]
+        ]
     ];
     protected $validationMessages = [];
     protected $skipValidation = false;

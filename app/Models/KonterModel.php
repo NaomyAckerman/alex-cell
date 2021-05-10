@@ -43,10 +43,11 @@ class KonterModel extends Model
         ],
         'konter_no_telp' => [
             'label'  => 'No Telephone',
-            'rules'  => 'required|numeric',
+            'rules'  => 'required|numeric|exact_length[11,13,12]',
             'errors' => [
                 'required' => 'Anda harus memilih {field} konter.',
-                'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.'
+                'numeric' => 'Maaf. format {field} salah, gunakan format numeric!.',
+                'exact_length' => 'Jumlah {field} tidak valid.'
             ]
         ],
     ];
