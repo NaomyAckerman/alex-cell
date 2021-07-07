@@ -33,7 +33,7 @@ class ProdukController extends BaseController
         $data = [
             'status' => 'success',
             'data' => \view('pages/produk/produk', [
-                'produk' =>  $this->produk->orderBy('produk.id', 'desc')->kategori(),
+                'produk' =>  $this->produk->orderBy('produk.id', 'DESC')->kategori(),
             ]),
         ];
         return $this->response->setStatusCode(200)

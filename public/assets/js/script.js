@@ -410,20 +410,24 @@ const produk = () => {
                 $("#datatable").DataTable({
                     responsive: true,
                     autoWidth: false,
-                });
-                $(".image-popup-no-margins").magnificPopup({
-                    type: "image",
-                    closeOnContentClick: true,
-                    closeBtnInside: false,
-                    fixedContentPos: true,
-                    mainClass: "mfp-no-margins mfp-with-zoom",
-                    image: {
-                        verticalFit: true,
-                    },
-                    zoom: {
-                        enabled: true,
-                        duration: 300,
-                    },
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
+                    fnDrawCallback: function () {
+                        $(".image-popup-no-margins").magnificPopup({
+                            type: "image",
+                            closeOnContentClick: true,
+                            closeBtnInside: false,
+                            fixedContentPos: true,
+                            mainClass: "mfp-no-margins mfp-with-zoom",
+                            image: {
+                                verticalFit: true,
+                            },
+                            zoom: {
+                                enabled: true,
+                                duration: 300,
+                            },
+                        });
+                    }
                 });
                 edit_produk();
                 delete_produk();
@@ -1111,6 +1115,8 @@ const konter = () => {
                 $("#datatable-konter").DataTable({
                     responsive: true,
                     autoWidth: false,
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]]
                 });
                 $(".image-popup-no-margins").magnificPopup({
                     type: "image",
@@ -2384,10 +2390,14 @@ const trxRekap = () => {
                 $("#datatable-rekap-kartu").DataTable({
                     responsive: true,
                     autoWidth: false,
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]]
                 });
                 $("#datatable-rekap-acc").DataTable({
                     responsive: true,
                     autoWidth: false,
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]]
                 });
                 submitTrxRekap();
             })
@@ -2483,10 +2493,14 @@ const infoTrx = () => {
                 $("#datatable").DataTable({
                     responsive: true,
                     autoWidth: false,
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]]
                 });
                 $("#datatable2").DataTable({
                     responsive: true,
                     autoWidth: false,
+                    iDisplayLength: 5,
+                    aLengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]]
                 });
             })
             .fail((res) => {

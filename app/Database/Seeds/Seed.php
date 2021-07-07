@@ -13,5 +13,6 @@ class Seed extends Seeder
                 $this->call('UserSeeder');
                 $this->call('GroupSeeder');
                 $this->call('GroupUserSeeder');
+                $this->call('ProdukSeeder');
         }
 }

@@ -6,7 +6,7 @@
             <span class="info-box-text">Total Trx Aksesoris</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_acc, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_acc')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <span class="info-box-text">Total Trx Kartu</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_kartu, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_kartu')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>
@@ -36,7 +36,7 @@
             <span class="info-box-text">Total Trx Reseller</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_partai, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_partai')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>
@@ -44,13 +44,13 @@
 </div>
 <!-- Column -->
 <!-- Column -->
-<div class="col-12">
+<!-- <div class="col-12">
     <button class="btn btn-primary waves-effect waves-light text-white">Report</button>
-</div>
+</div> -->
 <div class="col-12 col-sm-12 col-md-12">
     <div class="card m-b-30 mt-4 shadow shadow">
         <div class="card-header text-white bg-primary text-white bg-primary">
-            Total Penjualan Kartu dan Aksesoris tahun 2020
+            Total Penjualan Kartu dan Aksesoris tahun <?= date('Y'); ?>
         </div>
         <div class="card-body">
             <canvas id="bar-kartu-acc" height="300"></canvas>

@@ -6,7 +6,7 @@
             <span class="info-box-text">Total Trx Aksesoris</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_acc, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_acc')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <span class="info-box-text">Total Trx Kartu</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_kartu, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_kartu')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>
@@ -36,7 +36,7 @@
             <span class="info-box-text">Total Trx Reseller</span>
             <span class="info-box-number">
                 <small>IDR</small>
-                <?= ($trx) ? number_format($trx->total_partai, 0, "", ".") : 0; ?>
+                <?= ($trx) ? number_format(array_sum(array_column($trx, 'total_partai')), 0, "", ".") : 0; ?>
             </span>
         </div>
     </div>

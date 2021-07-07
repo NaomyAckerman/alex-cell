@@ -75,7 +75,7 @@ if (in_groups('karyawan')) {
         })
         let ctxPendapatan = document.getElementById('bar-pendapatan').getContext('2d');
         let pendapatanChart = new Chart(ctxPendapatan, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
                 datasets: [{
@@ -89,7 +89,8 @@ if (in_groups('karyawan')) {
                             <?php foreach ($laba_konter1 as $laba) : ?>
                                 <?= $laba ?>,
                             <?php endforeach; ?>
-                        ]
+                        ],
+                        lineTension: 0.3
                     },
                     {
                         label: "Konter2",
@@ -102,7 +103,8 @@ if (in_groups('karyawan')) {
                             <?php foreach ($laba_konter2 as $laba) : ?>
                                 <?= $laba ?>,
                             <?php endforeach; ?>
-                        ]
+                        ],
+                        lineTension: 0.3
                     }
                 ]
             },

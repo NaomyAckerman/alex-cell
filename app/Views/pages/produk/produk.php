@@ -1,4 +1,4 @@
-<table id="datatable" class="table table-bordered table-hover table-striped text-center">
+<table id="datatable" class="table table-bordered table-hover table-striped text-center table-responsive">
     <thead>
         <tr>
             <th>No</th>

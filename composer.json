@@ -13,9 +13,9 @@
 		"dompdf/dompdf": "^1.0"
 	},
 	"require-dev": {
-		"fzaninotto/faker": "^1.9@dev",
 		"mikey179/vfsstream": "1.6.*",
-		"phpunit/phpunit": "^8.5"
+		"phpunit/phpunit": "^8.5",
+		"fakerphp/faker": "^1.14"
 	},
 	"autoload-dev": {
 		"psr-4": {

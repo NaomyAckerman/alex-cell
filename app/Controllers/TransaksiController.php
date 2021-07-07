@@ -918,7 +918,7 @@ class TransaksiController extends BaseController
             $total_pulsa = $this->request->getVar('total_pulsa');
             $total_keluar = $this->request->getVar('total_keluar');
             $total_modal = $this->request->getVar('total_modal');
-            if ($total_keluar = '' or $total_pulsa = '' or $total_keluar = '' or $total_modal = '') {
+            if ($total_keluar == '' or $total_pulsa == '' or $total_keluar == '' or $total_modal == '') {
                 $data = [
                     'tipe' => 'errors',
                     'status' => 'Bad Request',

@@ -32,10 +32,10 @@
                                             <div class="col-12 col-lg-6">
                                                 <span class="info-box-text">IDR <?= number_format($kartu->harga_user, 0, "", "."); ?></span>
                                             </div>
-                                            <div class="col-12 col-lg-4">
+                                            <div class="col-12 col-lg-5">
                                                 <span class="info-box-text">Stok : <?= $kartu->stok; ?></span>
                                             </div>
-                                            <div class="col-12 col-lg-8">
+                                            <div class="col-12 col-lg-7">
                                                 <input type="hidden" class="form-control" name="produk_id[]" value="<?= $kartu->produk_id; ?>">
                                                 <input type="number" class="form-control" name="produk_sisa[]" id="<?= $kartu->produk_nama; ?>" placeholder="Masukkan sisa">
                                                 <div id="<?= $kartu->produk_nama; ?>-err" class="invalid-feedback">

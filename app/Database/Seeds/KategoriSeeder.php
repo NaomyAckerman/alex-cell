@@ -12,6 +12,7 @@ class KategoriSeeder extends Seeder
         $data = [
             [
                 'kategori_nama' => 'kartu',
+                'kategori_slug' => 'kartu',
                 'kategori_gambar' => 'kartu_kategori.jpg',
                 'kategori_deskripsi' => 'kartu perdana dan paketan',
                 'created_at' => Time::now(),
@@ -19,6 +20,7 @@ class KategoriSeeder extends Seeder
             ],
             [
                 'kategori_nama' => 'acc',
+                'kategori_slug' => 'kartu',
                 'kategori_gambar' => 'acc_kategori.jpg',
                 'kategori_deskripsi' => 'aksesoris',
                 'created_at' => Time::now(),

@@ -15,6 +15,13 @@
         <div class="info-box mt-3 shadow">
             <div class="info-box-content">
                 <div class="form-group">
+                    <label for="total-modal">Total modal</label>
+                    <input type="number" class="form-control" name="total_modal" id="total-modal" placeholder="Masukkan total modal">
+                    <div id="total-modal-err" class="invalid-feedback">
+                        Please provide a valid zip.
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="total-pulsa">Total trx Pulsa</label>
                     <input type="number" class="form-control" name="total_pulsa" id="total-pulsa" placeholder="Masukkan total trx pulsa">
                     <div id="total-pulsa-err" class="invalid-feedback">
@@ -32,13 +39,6 @@
                     <label for="total-keluar">Total pengeluaran</label>
                     <input type="number" class="form-control" name="total_keluar" id="total-keluar" placeholder="Masukkan total pengeluaran">
                     <div id="total-keluar-err" class="invalid-feedback">
-                        Please provide a valid zip.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="total-modal">Total modal</label>
-                    <input type="number" class="form-control" name="total_modal" id="total-modal" placeholder="Masukkan total modal">
-                    <div id="total-modal-err" class="invalid-feedback">
                         Please provide a valid zip.
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                                     <td>
                                         <?php if ($kartu->produk_gambar) : ?>
                                             <a class="image-popup-no-margins" href="<?= base_url('assets/images/products/' . $kartu->produk_gambar); ?>">
-                                                <?= img("assets/images/products/$kartu->produk_gambar", true, ['class' => 'rounded-circle img-fluid', 'alt' => 'produk']); ?>
+                                                <?= img("assets/images/products/$kartu->produk_gambar", true, ['class' => 'rounded-circle img-fluid', 'width' => '60', 'alt' => 'produk']); ?>
                                             </a>
                                         <?php else : ?>
                                             <?= img('https://ui-avatars.com/api/?size=128&bold=true&background=random&color=ffffff&rounded=true&name=' . $kartu->produk_nama, true, ['class' => 'rounded-circle', 'width' => '60', 'alt' => 'produk']); ?>
@@ -91,7 +91,7 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </tbody>
-                    <h5 class="mt-0 round-inner my-3 font-16 font-weight-bold"><small>Total TRX Kartu: IDR</small> <?= array_sum($list_total_trx_kartu) ?></h5>
+                    <h5 class="mt-0 round-inner my-3 font-16 font-weight-bold"><small>Total TRX Kartu: IDR </small><?= number_format(array_sum($list_total_trx_kartu), 0, "", ".") ?></h5>
                 </table>
             </div>
         </div>
@@ -123,7 +123,7 @@
                                     <td>
                                         <?php if ($acc->produk_gambar) : ?>
                                             <a class="image-popup-no-margins" href="<?= base_url('assets/images/products/' . $acc->produk_gambar); ?>">
-                                                <?= img("assets/images/products/$acc->produk_gambar", true, ['class' => 'rounded-circle img-fluid', 'alt' => 'produk']); ?>
+                                                <?= img("assets/images/products/$acc->produk_gambar", true, ['class' => 'rounded-circle img-fluid', 'width' => '60', 'alt' => 'produk']); ?>
                                             </a>
                                         <?php else : ?>
                                             <?= img('https://ui-avatars.com/api/?size=128&bold=true&background=random&color=ffffff&rounded=true&name=' . $acc->produk_nama, true, ['class' => 'rounded-circle', 'width' => '60', 'alt' => 'produk']); ?>
@@ -138,7 +138,7 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </tbody>
-                    <h5 class="mt-0 round-inner my-3 font-16 font-weight-bold"><small>Total TRX Aksesoris: IDR</small> <?= array_sum($list_total_trx_acc) ?></h5>
+                    <h5 class="mt-0 round-inner my-3 font-16 font-weight-bold"><small>Total TRX Aksesoris: IDR</small> <?= number_format(array_sum($list_total_trx_acc), 0, "", ".") ?></h5>
                 </table>
             </div>
         </div>
@@ -304,10 +304,10 @@
                                                     <small class="text-muted font-14">Jumlah : <?= number_format($reseller2->trx_partai_qty, 0, "", "."); ?></small>
                                                 </p>
                                                 <p class="card-text">
-                                                    <small class="text-muted font-14">harga : <?= number_format($reseller2->harga_partai, 0, "", "."); ?></small>
+                                                    <small class="text-muted font-14">harga : IDR <?= number_format($reseller2->harga_partai, 0, "", "."); ?></small>
                                                 </p>
                                                 <p class="card-text">
-                                                    <small class="text-muted font-14">Total : <?= number_format($reseller2->trx_partai_qty * $reseller2->harga_partai, 0, "", "."); ?></small>
+                                                    <small class="text-muted font-14">Total : IDR <?= number_format($reseller2->trx_partai_qty * $reseller2->harga_partai, 0, "", "."); ?></small>
                                                 </p>
                                                 <hr>
                                                 <?php array_push($list_total_per_reseller, ($reseller2->trx_partai_qty * $reseller2->harga_partai)) ?>
@@ -315,7 +315,7 @@
                                             <?php endif ?>
                                         <?php endforeach ?>
                                         <p class="card-text">
-                                            <small class="font-16 font-weight-bold text-muted"><small>Total Transaksi</small> : <?= number_format(array_sum($list_total_per_reseller), 0, "", "."); ?></small>
+                                            <small class="font-16 font-weight-bold text-muted"><small>Total Transaksi : IDR </small><?= number_format(array_sum($list_total_per_reseller), 0, "", "."); ?></small>
                                         </p>
                                     </div>
                                     <?php $list_total_per_reseller = []; ?>
@@ -328,7 +328,7 @@
                     <hr>
                 </div>
                 <hr>
-                <h5 class="mt-0 round-inner font-16 font-weight-bold"><small>Total Reseller: IDR</small> <?= number_format(array_sum($list_total_trx_reseller), 0, "", ".") ?></h5>
+                <h5 class="mt-0 round-inner font-16 font-weight-bold"><small>Total Reseller : IDR</small> <?= number_format(array_sum($list_total_trx_reseller), 0, "", ".") ?></h5>
             </div>
         </div>
     </div>
@@ -365,7 +365,7 @@
                 <p class="mt-0 round-inner font-16 font-weight-bold text-muted"><small>Pulsa : IDR</small> <?= $trx ? number_format($trx->total_pulsa, 0, "", ".") : '0'; ?></p>
                 <p class="mt-0 round-inner font-16 font-weight-bold text-muted"><small>Transaksi Tunai : IDR</small> <?= $trx ? number_format($trx->total_tunai, 0, "", ".") : '0'; ?></p>
                 <hr>
-                <h5 class="mt-0 round-inner font-16 font-weight-bold"><small>Rekap Transaksi : IDR</small> <?= $trx ? number_format(($trx->total_tunai - $trx->total_trx), 0, "", ".") : '0'; ?></h5>
+                <h5 class="mt-0 round-inner font-16 font-weight-bold<?= ($trx->total_tunai - $trx->total_trx) ? ' text-danger' : ''; ?>"><small>Rekap Transaksi : IDR</small> <?= $trx ? number_format(($trx->total_tunai - $trx->total_trx), 0, "", ".") : '0'; ?></h5>
             </div>
         </div>
     </div>

@@ -17,10 +17,14 @@ class DashboardController extends BaseController
     public function index()
     {
         $data = ['title' => 'dashboard'];
-        $trx = $this->trx->where([
-            'konter_id' => $this->konter_id,
-            'DATE_FORMAT(created_at, "%Y-%m-%d")' => $this->date_now->format('Y-m-d'),
-        ])->first();
+        $trx = \in_groups('karyawan') ?
+            $this->trx->where([
+                'konter_id' => $this->konter_id,
+                'DATE_FORMAT(created_at, "%Y-%m-%d")' => $this->date_now->format('Y-m-d'),
+            ])->first() :
+            $this->trx->where([
+                'DATE_FORMAT(created_at, "%Y-%m-%d")' => $this->date_now->format('Y-m-d'),
+            ])->find();
         $data['trx'] = $trx;
         if (\in_groups('owner')) {
             $data['trx_konter1'] = $this->_trx_konter(1);

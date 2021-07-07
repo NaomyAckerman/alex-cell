@@ -15,7 +15,7 @@
                     <div class="col-12 col-md-4 col-lg-5 align-self-end">
                         <h6 class="text-muted fw-400">Pilih tanggal</h6>
                         <div class="input-group">
-                            <input name="tanggal" type="text" class="form-control" placeholder="<?= date('Y-m-d'); ?>" id="mdate">
+                            <input name="tanggal" type="text" class="form-control" value="<?= date('Y-m-d'); ?>" placeholder="<?= date('Y-m-d'); ?>" id="mdate">
                             <div class="input-group-append bg-custom b-0"><span class="input-group-text"><i class="mdi mdi-calendar"></i></span></div>
                         </div>
                     </div>
